@@ -1,30 +1,12 @@
 <template>
   <div>
-    <loader-component />
-    <p>About Page</p>
+    <p>A Sample page in the Github User Finder App</p>
   </div>
 </template>
 
 <script>
-import LoaderComponent from "../components/Loader.vue";
 export default {
-  name: "HomePage",
-  components: {
-    LoaderComponent,
-  },
-  data: () => ({
-    users: [],
-  }),
+  name: "AboutPage"
 };
 </script>
 
-<style scoped>
-.gutter {
-  padding: 0.5rem;
-  margin: 1rem auto;
-}
-.card-container {
-  display: flex !important;
-  justify-content: center !important;
-}
-</style>

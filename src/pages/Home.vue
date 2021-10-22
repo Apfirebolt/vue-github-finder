@@ -1,6 +1,6 @@
 <template>
   <div>
-    <loader-component />
+    <loader-component v-if="loading" />
     <search-component @searchUser="searchUser" />
     <vs-row v-if="users.length" :w="12" class="gutter">
       <vs-col v-for="user in users" :key="user.id" w="4" class="card-container">

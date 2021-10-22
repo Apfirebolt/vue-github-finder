@@ -1,7 +1,8 @@
 <template>
   <vs-row :w="10" class="gutter success">
-    <vs-col :w="6">
+    <vs-col :w="6" type="flex" vs-justify="center" vs-align="center">
       <h3>Github Finder</h3>
+      <img src="https://img.icons8.com/material-rounded/24/000000/github.png" height="50" width="50" style="margin-left: 0.5rem;"/>
     </vs-col>
     <vs-col :w="6" class="nav-right">
       <vs-button flat size="large" @click.prevent="goToPage('About')">About</vs-button>

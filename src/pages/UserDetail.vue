@@ -1,5 +1,6 @@
 <template>
-  <div v-if="user" class="user-container">
+  <loader-component v-if="loading" color="blue" />
+  <div class="user-container" v-else>
     <vs-row>
       <vs-col
         vs-type="flex"
@@ -84,19 +85,19 @@
       </vs-col>
     </vs-row>
   </div>
-  <h3 v-else>
-    Loading...
-  </h3>
+  
 </template>
 
 <script>
 import axios from "axios";
 import IconComponent from "../components/SVGIcon.vue";
+import LoaderComponent from "../components/Loader.vue";
 
 export default {
   name: "UserDetailPage",
   components: {
     IconComponent,
+    LoaderComponent,
   },
   data: () => ({
     user: {},
@@ -108,15 +109,18 @@ export default {
   },
   methods: {
     async getUserDetails(username) {
+      this.loading = true;
       Promise.all([
         await axios.get(`https://api.github.com/users/${username}`),
         await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc`)
       ])
       .then((responses) => {
+        this.loading = false;
         this.user = responses[0].data;
         this.repos = responses[1].data;
       })
       .catch((errors) => {
+        this.loading = false;
         console.log(errors)
       })
     },
