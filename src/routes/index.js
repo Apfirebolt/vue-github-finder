@@ -15,7 +15,7 @@ const routes = [
     component: () => import('../pages/About.vue'),
   },
   {
-    path: '/users/:userId',
+    path: '/users/:username',
     name: 'UserDetail',
     component: () => import('../pages/UserDetail.vue'),
   },

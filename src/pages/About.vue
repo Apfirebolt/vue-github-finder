@@ -15,17 +15,6 @@ export default {
   data: () => ({
     users: [],
   }),
-  methods: {
-    async searchUser(term) {
-      const userResponse = await axios.get(
-        `https://api.github.com/search/users?q=${term}`
-      );
-      if (userResponse) {
-        this.users = userResponse.data.items;
-        console.log(userResponse.items);
-      }
-    },
-  },
 };
 </script>
 

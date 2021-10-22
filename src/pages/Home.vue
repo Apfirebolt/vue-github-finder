@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>Home page hello</p>
     <loader-component />
     <search-component @searchUser="searchUser" />
     <vs-row v-if="users.length" :w="12" class="gutter">

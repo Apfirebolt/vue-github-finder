@@ -7,7 +7,7 @@
       <img :src="userObj.avatar_url" alt="" />
     </template>
     <template #text>
-      <vs-button danger icon class="auto-margin" style="padding: 0.5rem">
+      <vs-button danger icon class="auto-margin" style="padding: 0.5rem" @click.prevent="goToUserDetail(userObj.login)">
         View
       </vs-button>
     </template>
@@ -23,6 +23,11 @@ export default {
       required: true,
     },
   },
+  methods: {
+    goToUserDetail(username) {
+      this.$router.push({ name: 'UserDetail', params: { username } })
+    }
+  }
 };
 </script>
 

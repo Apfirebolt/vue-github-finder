@@ -1,13 +1,13 @@
 <template>
-  <vs-navbar class="navbar" color="#e8e4f7" center-collapsed v-model="active">
-    <template #left>
+  <vs-row :w="10" class="gutter success">
+    <vs-col :w="6">
       <h3>Github Finder</h3>
-    </template>
-    <template #right>
-      <vs-button flat @click.prevent="goToPage('About')">About</vs-button>
-      <vs-button @click.prevent="goToPage('Home')">Home</vs-button>
-    </template>
-  </vs-navbar>
+    </vs-col>
+    <vs-col :w="6" class="nav-right">
+      <vs-button flat size="large" @click.prevent="goToPage('About')">About</vs-button>
+      <vs-button size="large" @click.prevent="goToPage('Home')">Home</vs-button>
+    </vs-col>
+  </vs-row>
 </template>
 <script>
 export default {
@@ -23,7 +23,17 @@ export default {
 </script>
 
 <style scoped>
+.gutter {
+  width: 90%;
+  padding: 0.5rem 1rem;
+  background: aliceblue;
+  margin: auto;
+}
 .navbar {
   padding: 0.5rem;
+}
+.nav-right {
+  display: flex !important;
+  justify-content: right !important;
 }
 </style>
