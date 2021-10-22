@@ -6,11 +6,18 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
+    name: 'Home',
     component: () => import('../pages/Home.vue'),
   },
   {
-    path: '/users',
-    component: () => import('../pages/UserSearch.vue'),
+    path: '/about',
+    name: 'About',
+    component: () => import('../pages/About.vue'),
+  },
+  {
+    path: '/users/:userId',
+    name: 'UserDetail',
+    component: () => import('../pages/UserDetail.vue'),
   },
 ];
 

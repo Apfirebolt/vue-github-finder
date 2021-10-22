@@ -1,11 +1,11 @@
 <template>
   <div>
-    <p>User Search</p>
+    <p>Loader</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'UserSearchPage',
+  name: 'LoaderComponent',
 }
 </script>
