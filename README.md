@@ -16,6 +16,7 @@ Made with ❤️ by **[@apfirebolt](https://github.com/Apfirebolt/)**
 
 * [Vue](https://vuejs.org//)
 * [Vuesax](https://vuesax.com//)
+* [Docker](https://www.docker.com//)
 
 ## Project setup
 
@@ -35,7 +36,7 @@ npm start
 
 ## Docker deployment instructions
 
-Docker container based systems make it easy for you to deploy production ready apps with few one liners. Make sure you have Docker installed on your syBuild an image from the existing Docker file inside this repo. 
+Docker container based systems make it easy for you to deploy production ready apps with few one liners. Make sure you have Docker installed on your system. Build an image from the existing Docker file inside this repo. 
 
 ```
 sudo docker build . -t vue-github
