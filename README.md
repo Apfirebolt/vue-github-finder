@@ -33,6 +33,20 @@ npm run build
 npm start
 ```
 
+## Docker deployment instructions
+
+Docker container based systems make it easy for you to deploy production ready apps with few one liners. Make sure you have Docker installed on your syBuild an image from the existing Docker file inside this repo. 
+
+```
+sudo docker build . -t vue-github
+sudo docker run --detach -p 80:80 vue-github
+```
+
+- First command would create an image from the existing docker file, image would be tagged by name 'vue-github' for identification. If this is skipped, then image would be created with an ID which would be hard to identify.
+- Second step would create a container from the image and run it on port 80 on your system.
+- Make sure there are no servers running on your system like nginx and/or Apache. Docker script is configured to serve the build through Nginx on port 80.
+- detach flag is used to indicate that this process would be running in background in non-interactive mode.
+
 ## Project Screenshots
 
 Please find some of the screenshots of the application. Below is the screenshot of the Search Page.
