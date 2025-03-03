@@ -19,9 +19,9 @@ const routes = [
         component: Home
     },
     {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: () => import('../views/Dashboard.vue')
+        path: '/about',
+        name: 'About',
+        component: () => import('../views/About.vue')
     },
     {
         path: '/:username',

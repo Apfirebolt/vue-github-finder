@@ -4,11 +4,25 @@
         <div class="user-info bg-white shadow-md rounded-lg p-6 text-center">
             <img :src="user.avatar_url" alt="User Avatar" class="w-24 h-24 rounded-full mx-auto">
             <h3 class="text-2xl font-semibold mt-4">{{ user.name }}</h3>
+            <p v-if="user.email">
+                Email Address: <span class="text-blue-500">{{ user.email }}</span>
+            </p>
             <p class="text-gray-600">{{ user.login }}</p>
             <p class="text-gray-600 mt-2">{{ user.bio }}</p>
+            <p>
+                <span class="font-semibold">Followers:</span> {{ user.followers }}
+                <span class="font-semibold ml-4">Following:</span> {{ user.following }}
+            </p>
+            <p>
+                <span class="font-semibold">Public Repos:</span> {{ user.public_repos }}
+                <span class="font-semibold ml-4">Public Gists:</span> {{ user.public_gists }}
+            </p>
+            <p>
+                Country: {{ user.location }}
+            </p>
             <a :href="user.html_url" target="_blank" class="text-blue-500 mt-4 inline-block">View Profile</a>
         </div>
-        <div class="user-repos mt-8">
+        <div class="container mx-auto my-4">
             <h3 class="text-2xl font-semibold text-center">Latest Repositories</h3>
             <div v-for="repo in repos" :key="repo.id" class="bg-white shadow-md rounded-lg p-4 mt-4">
                 <h3 class="text-xl font-semibold">{{ repo.name }}</h3>

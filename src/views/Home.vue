@@ -8,12 +8,21 @@
         Github API to fetch user data and display it in a user-friendly way.
       </p>
 
-      <p class="mt-4">
-        The app is built using Vue.js, Tailwind CSS, and Express. It is a single
-        page application that uses Express back-end for authentication and
-        MongoDB for data storage. The app is responsive and works on desktop,
-        tablet, and mobile devices.
-      </p>
+      <div class="mt-6 flex justify-center mx-auto w-1/2 items-center">
+        <input
+            type="text"
+            v-model="searchTerm"
+            @keyup.enter="searchUser(searchTerm)"
+            placeholder="Search for a GitHub user"
+            class="w-full mx-2 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            @click="searchUser(searchTerm)"
+            class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600"
+          >
+            Search
+          </button>
+      </div>
       <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <div v-for="user in users" :key="user.id" class="bg-white shadow-md rounded-lg p-4">
           <img :src="user.avatar_url" alt="User Avatar" class="w-16 h-16 rounded-full mx-auto">
@@ -37,6 +46,7 @@ export default {
   data: () => ({
     users: [],
     loading: false,
+    searchTerm: "",
   }),
   methods: {
     async searchUser(term) {

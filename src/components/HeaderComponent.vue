@@ -1,8 +1,8 @@
 <template>
   <Disclosure as="nav" class="bg-darkNavy" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center">
+      <div class="flex items-center h-16">
+        <div class="flex items-center w-full justify-between">
           <div class="flex-shrink-0">
             <h2 class="text-2xl text-white font-bold">Github Finder</h2>
           </div>
@@ -18,10 +18,9 @@
               >
               
               <router-link
-                to="/dashboard"
-                href="#"
+                to="/about"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Dashboard</router-link
+                >About</router-link
               >
             </div>
           </div>
@@ -43,12 +42,6 @@
     <DisclosurePanel class="sm:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <span
-          v-if="userData"
-          class="text-white block px-3 py-2 rounded-md text-base font-medium"
-        >
-          Welcome, {{ userData.username }}
-        </span>
         <router-link
           to="/"
           class="text-white block px-3 py-2 rounded-md text-base font-medium"
@@ -56,10 +49,9 @@
         >
       
         <router-link
-          v-if="userData"
-          to="/dashboard"
+          to="/about"
           class="text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Dashboard</router-link
+          >About</router-link
         >
       </div>
     </DisclosurePanel>
@@ -67,7 +59,6 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { MenuIcon, XIcon } from "@heroicons/vue/outline";
 </script>
