@@ -2,24 +2,24 @@
     <loader-component v-if="loading" color="blue" />
     <div class="user-container" v-else>
         <div class="user-info bg-white shadow-md rounded-lg p-6 text-center">
-            <img :src="user.avatar_url" alt="User Avatar" class="w-24 h-24 rounded-full mx-auto">
+            <img :src="user.avatar_url" alt="User Avatar" class="w-48 h-48 rounded-full mx-auto">
             <h3 class="text-2xl font-semibold mt-4">{{ user.name }}</h3>
             <p v-if="user.email">
                 Email Address: <span class="text-blue-500">{{ user.email }}</span>
             </p>
             <p class="text-gray-600">{{ user.login }}</p>
             <p class="text-gray-600 mt-2">{{ user.bio }}</p>
-            <p>
-                <span class="font-semibold">Followers:</span> {{ user.followers }}
-                <span class="font-semibold ml-4">Following:</span> {{ user.following }}
-            </p>
-            <p>
-                <span class="font-semibold">Public Repos:</span> {{ user.public_repos }}
-                <span class="font-semibold ml-4">Public Gists:</span> {{ user.public_gists }}
-            </p>
-            <p>
-                Country: {{ user.location }}
-            </p>
+            <div class="flex flex-col items-center mt-4 space-y-2 bg-secondary-300 shadow-md rounded-lg p-4">
+                <div class="flex space-x-4">
+                    <p class="font-semibold">Followers: <span class="text-gray-700">{{ user.followers }}</span></p>
+                    <p class="font-semibold">Following: <span class="text-gray-700">{{ user.following }}</span></p>
+                </div>
+                <div class="flex space-x-4">
+                    <p class="font-semibold">Public Repos: <span class="text-gray-700">{{ user.public_repos }}</span></p>
+                    <p class="font-semibold">Public Gists: <span class="text-gray-700">{{ user.public_gists }}</span></p>
+                </div>
+                <p class="font-semibold">Country: <span class="text-gray-700">{{ user.location }}</span></p>
+            </div>
             <a :href="user.html_url" target="_blank" class="text-blue-500 mt-4 inline-block">View Profile</a>
         </div>
         <div class="container mx-auto my-4">
@@ -27,7 +27,7 @@
             <div v-for="repo in repos" :key="repo.id" class="bg-white shadow-md rounded-lg p-4 mt-4">
                 <h3 class="text-xl font-semibold">{{ repo.name }}</h3>
                 <p class="text-gray-600">{{ repo.description }}</p>
-                <a :href="repo.html_url" target="_blank" class="text-blue-500 mt-2 inline-block">View Repo</a>
+                <a :href="repo.html_url" target="_blank" class="text-secondary-300 bg-primary-200 px-2 py-1 rounded-sm shadow-md mt-2 inline-block">View Repo</a>
             </div>
         </div>
     </div>

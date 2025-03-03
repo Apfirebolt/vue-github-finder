@@ -1,11 +1,9 @@
 <template>
   <section class="shadow sm:rounded-lg" id="about">
     <div class="px-4 py-5 sm:p-6">
-      <h2 class="text-3xl my-2 py-2 text-center text-jet-black">ABOUT</h2>
-      <p>
-        Github Finder is a simple web application that allows users to search
-        for Github users and view their profile details. The app uses the
-        Github API to fetch user data and display it in a user-friendly way.
+      <h2 class="text-3xl my-2 py-2 text-center text-jet-black">HOME</h2>
+      <p class="text-center">
+        Type the username of a GitHub user in the search box below to view their profile details. It would show details such as the number of public repositories, followers, following, and more.
       </p>
 
       <div class="mt-6 flex justify-center mx-auto w-1/2 items-center">
@@ -18,17 +16,18 @@
           />
           <button
             @click="searchUser(searchTerm)"
-            class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600"
+            class="bg-primary-300 text-white py-2 px-4 rounded-lg shadow-md hover:bg-primary-100"
           >
             Search
           </button>
       </div>
+      <loader-component v-if="loading" />
       <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <div v-for="user in users" :key="user.id" class="bg-white shadow-md rounded-lg p-4">
           <img :src="user.avatar_url" alt="User Avatar" class="w-16 h-16 rounded-full mx-auto">
           <h3 class="text-xl text-center mt-4">{{ user.login }}</h3>
-          <a :href="user.html_url" target="_blank" class="text-blue-500 text-center block mt-2">View Profile</a>
-          <button @click="goToDetails(user.login)" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded block mx-auto">
+          <a :href="user.html_url" target="_blank" class="text-secondary-200 text-center block mt-2">View Profile</a>
+          <button @click="goToDetails(user.login)" class="mt-4 bg-primary-100 hover:bg-primary-300 transition-all duration-200 text-white py-2 px-4 rounded block mx-auto">
             Go to Details
           </button>
         </div>
@@ -40,6 +39,7 @@
 
 <script>
 import axios from "axios";
+import LoaderComponent from "../components/Loader.vue";
 
 export default {
   name: "HomePage",
@@ -48,6 +48,9 @@ export default {
     loading: false,
     searchTerm: "",
   }),
+  components: {
+    LoaderComponent,
+  },
   methods: {
     async searchUser(term) {
       this.loading = true;

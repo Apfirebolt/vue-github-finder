@@ -1,70 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-Theme Colors
-
-B8DBD9 : Light Blue
-F4F4F9 : Ghost Grey
-586F7C : Cadet Grey
-2F4550 : Dark Slate Grey
-333333 : Jet Black
-*/
-
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 p {
-  font-family: 'Poppins', sans-serif;
-}
-
-.bg-light-blue {
-  background-color: #B8DBD9;
-}
-
-.bg-ghost-grey {
-  background-color: #F4F4F9;
-}
-
-.bg-cadet-grey {
-  background-color: #586F7C;
-}
-
-.bg-dark-slate-grey {
-  background-color: #2F4550;
-}
-
-.bg-jet-black {
-  background-color: #333333;
-}
-
-.text-light-blue {
-  color: #B8DBD9;
-}
-
-.text-ghost-grey {
-  color: #F4F4F9;
-}
-
-.text-cadet-grey {
-  color: #586F7C;
-}
-
-.text-dark-slate-grey {
-  color: #2F4550;
-}
-
-.text-jet-black {
-  color: #333333;
+  font-family: 'Roboto', sans-serif;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-light-blue">
+  <div class="text-secondary-100 bg-secondary-300">
     <HeaderComponent />
     <router-view />
     <FooterComponent />

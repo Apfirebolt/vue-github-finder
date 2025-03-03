@@ -4,19 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        darkNavy: "#1A202C",
-        lightGray: "#E2E8F0",
-        white: "#FFFFFF",
-        lightBlue: "#4299E1",
-        goldenOrange: "#F6AD55",
-        mediumGray: "#718096",
         //If you want to keep the primary color you had, you can
-        primary: "#FF6363",
+        primary: {
+          100: "#5B85AA",
+          200: "#171123",
+          300: "#414770",
+        },
         //If you want to keep the secondary color you had, you can.
         secondary: {
-          100: "#E2E2D5",
-          200: "#888883",
+          100: "#4C191B",
+          200: "#963D5A",
+          300: "#ECFFF8",
         },
+
       },
     },
   },
