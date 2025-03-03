@@ -2,7 +2,7 @@
   <footer class="py-4 bg-red-700">
     <div class="container mx-auto px-4">
       <p class="text-center text-light-blue text-sm">
-        &copy; {{ currentYear }} Vue Github Finder - Built with Vue 3 and Tailwind CSS
+        &copy; {{ currentYear }} Reddit Clone - A Full Fledged Reddit Clone Built with Vue 3 and Tailwind CSS
       </p>
     </div>
   </footer>

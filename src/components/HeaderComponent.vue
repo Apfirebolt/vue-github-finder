@@ -9,14 +9,15 @@
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+              
               <router-link
                 to="/"
                 href="#"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >Home</router-link
               >
+              
               <router-link
-                v-if="userData"
                 to="/dashboard"
                 href="#"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -42,11 +43,18 @@
     <DisclosurePanel class="sm:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+        <span
+          v-if="userData"
+          class="text-white block px-3 py-2 rounded-md text-base font-medium"
+        >
+          Welcome, {{ userData.username }}
+        </span>
         <router-link
           to="/"
           class="text-white block px-3 py-2 rounded-md text-base font-medium"
           >Home</router-link
         >
+      
         <router-link
           v-if="userData"
           to="/dashboard"
@@ -62,5 +70,4 @@
 import { computed } from "vue";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { MenuIcon, XIcon } from "@heroicons/vue/outline";
-
 </script>

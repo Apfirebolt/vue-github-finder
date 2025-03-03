@@ -1,0 +1,60 @@
+<template>
+    <loader-component v-if="loading" color="blue" />
+    <div class="user-container" v-else>
+        <div class="user-info bg-white shadow-md rounded-lg p-6 text-center">
+            <img :src="user.avatar_url" alt="User Avatar" class="w-24 h-24 rounded-full mx-auto">
+            <h3 class="text-2xl font-semibold mt-4">{{ user.name }}</h3>
+            <p class="text-gray-600">{{ user.login }}</p>
+            <p class="text-gray-600 mt-2">{{ user.bio }}</p>
+            <a :href="user.html_url" target="_blank" class="text-blue-500 mt-4 inline-block">View Profile</a>
+        </div>
+        <div class="user-repos mt-8">
+            <h3 class="text-2xl font-semibold text-center">Latest Repositories</h3>
+            <div v-for="repo in repos" :key="repo.id" class="bg-white shadow-md rounded-lg p-4 mt-4">
+                <h3 class="text-xl font-semibold">{{ repo.name }}</h3>
+                <p class="text-gray-600">{{ repo.description }}</p>
+                <a :href="repo.html_url" target="_blank" class="text-blue-500 mt-2 inline-block">View Repo</a>
+            </div>
+        </div>
+    </div>
+    
+  </template>
+  
+  <script>
+  import axios from "axios";
+  import LoaderComponent from "../components/Loader.vue";
+  
+  export default {
+    name: "UserDetailPage",
+    components: {
+      LoaderComponent,
+    },
+    data: () => ({
+      user: {},
+      repos: [],
+      loading: false,
+    }),
+    mounted() {
+      this.getUserDetails(this.$route.params.username);
+    },
+    methods: {
+      async getUserDetails(username) {
+        this.loading = true;
+        Promise.all([
+          await axios.get(`https://api.github.com/users/${username}`),
+          await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc`)
+        ])
+        .then((responses) => {
+          this.loading = false;
+          this.user = responses[0].data;
+          this.repos = responses[1].data;
+        })
+        .catch((errors) => {
+          this.loading = false;
+          console.log(errors)
+        })
+      },
+    },
+  };
+  </script>
+  

@@ -1,43 +1,38 @@
 <template>
-  <div class="loader">
-    <icon-component name="plus" color="blue" />
+  <div class="flex justify-center items-center h-full">
+    <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16"></div>
   </div>
 </template>
 
 <script>
-import IconComponent from './SVGIcon.vue';
-export default {
-  name: "LoaderComponent",
-  components: {
-    IconComponent,
-  }
-};
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'Loader',
+});
 </script>
 
-<style scoped>
+<style>
 .loader {
-  margin: 1rem auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-animation: spin 2s linear infinite;
-  -moz-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+  border-top-color: #3498db;
+  -webkit-animation: spinner 1.5s linear infinite;
+  animation: spinner 1.5s linear infinite;
 }
 
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(360deg);
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
   }
-}
-@-webkit-keyframes spin {
   100% {
     -webkit-transform: rotate(360deg);
   }
 }
-@keyframes spin {
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
   100% {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }

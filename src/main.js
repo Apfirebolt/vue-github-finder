@@ -1,23 +1,37 @@
-import Vue from 'vue';
-import Vuesax from 'vuesax';
-import router from './routes/index';
-import App from './App.vue';
-import './App.css';
-import 'vuesax/dist/vuesax.css'; // Vuesax styles
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import VueSmoothScroll from 'vue3-smooth-scroll'
+import './style.css'
+import router from './routes'
+import App from './App.vue'
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
+import HeaderComponent from './components/HeaderComponent.vue'
 
-Vue.use(Vuesax, {
-  colors: {
-    primary:'#5b3cc4',
-    success:'rgb(23, 201, 100)',
-    danger:'rgb(242, 19, 93)',
-    warning:'rgb(255, 130, 0)',
-    dark:'rgb(36, 33, 69)'
-  }
-});
+// AOS imports
+import 'aos/dist/aos.css'
 
-Vue.config.productionTip = false;
+const app = createApp(App)
+app.use(router)
+app.use(createPinia())
+app.use(VueSmoothScroll)
+app.component('header-component', HeaderComponent)
+app.mount('#app');
 
-new Vue({
-  router,
-  render: (h) => h(App),
-}).$mount('#app');
+const options = {
+    transition: "Vue-Toastification__bounce",
+    maxToasts: 20,
+    newestOnTop: true,
+    position: "top-right",
+    timeout: 5000,
+    closeOnClick: true,
+    pauseOnFocusLoss: true,
+    pauseOnHover: true,
+    showCloseButtonOnHover: false,
+    hideProgressBar: false,
+    closeButton: "button",
+    icon: true,
+    rtl: false,
+};
+
+app.use(Toast, options);
