@@ -1,6 +1,6 @@
 <template>
   <section class="shadow sm:rounded-lg" id="about">
-    <div class="px-4 py-5 sm:p-6">
+    <div class="px-4 py-5 sm:p-6" data-aos="fade-up">
       <h2 class="text-3xl my-2 py-2 text-center text-jet-black">HOME</h2>
       <p class="text-center">
         Type the username of a GitHub user in the search box below to view their profile details. It would show details such as the number of public repositories, followers, following, and more.
@@ -20,6 +20,13 @@
           >
             Search
           </button>
+          <select v-model="itemsPerPage" class="ml-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
       </div>
       <loader-component v-if="loading" />
       <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -39,6 +46,8 @@
 
 <script>
 import axios from "axios";
+import aos from "aos";
+import "aos/dist/aos.css";
 import LoaderComponent from "../components/Loader.vue";
 
 export default {
@@ -46,21 +55,25 @@ export default {
   data: () => ({
     users: [],
     loading: false,
-    searchTerm: "",
+    searchTerm: "vue",
+    itemsPerPage: 10,
   }),
   components: {
     LoaderComponent,
   },
+  mounted() {
+    aos.init();
+    this.searchUser(this.searchTerm, this.itemsPerPage);
+  },
   methods: {
-    async searchUser(term) {
+    async searchUser(term, per_page) {
       this.loading = true;
       await axios
-        .get(`https://api.github.com/search/users?q=${term}`)
+        .get(`https://api.github.com/search/users?q=${term}&per_page=${per_page}`)
         .then((userResponse) => {
           if (userResponse) {
             this.loading = false;
             this.users = userResponse.data.items;
-            console.log(userResponse.items);
           }
         })
         .catch((err) => {
@@ -72,8 +85,10 @@ export default {
       this.$router.push({ name: "UserDetail", params: { username } });
     },
   },
-  mounted() {
-    this.searchUser("vuejs");
+  watch: {
+    itemsPerPage(value) {
+      this.searchUser(this.searchTerm, value);
+    },
   },
 };
 </script>
