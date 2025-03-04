@@ -9,18 +9,20 @@
             </p>
             <p class="text-gray-600">{{ user.login }}</p>
             <p class="text-gray-600 mt-2">{{ user.bio }}</p>
-            <div class="flex flex-col items-center mt-4 space-y-2 bg-secondary-300 shadow-md rounded-lg p-4">
-                <div class="flex space-x-4">
-                    <p class="font-semibold">Followers: <span class="text-gray-700">{{ user.followers }}</span></p>
-                    <p class="font-semibold">Following: <span class="text-gray-700">{{ user.following }}</span></p>
+            <div class="flex flex-col items-center mt-4 space-y-2 shadow-md rounded-lg p-4">
+                <div class="flex space-x-4 bg-secondary-100 w-1/2 mx-auto justify-center text-secondary-300 px-2 py-3">
+                    <p class="font-semibold">Followers: <span class="text-primary-100 rounded-md px-2 py-1 bg-secondary-300">{{ user.followers }}</span></p>
+                    <p class="font-semibold">Following: <span class="text-primary-100 rounded-md px-2 py-1 bg-secondary-300">{{ user.following }}</span></p>
                 </div>
-                <div class="flex space-x-4">
-                    <p class="font-semibold">Public Repos: <span class="text-gray-700">{{ user.public_repos }}</span></p>
-                    <p class="font-semibold">Public Gists: <span class="text-gray-700">{{ user.public_gists }}</span></p>
+                <div class="flex space-x-4 bg-secondary-100 w-1/2 mx-auto justify-center text-secondary-300 px-2 py-3">
+                    <p class="font-semibold">Public Repos: <span class="text-primary-100 rounded-md px-2 py-1 bg-secondary-300">{{ user.public_repos }}</span></p>
+                    <p class="font-semibold">Public Gists: <span class="text-primary-100 rounded-md px-2 py-1 bg-secondary-300">{{ user.public_gists }}</span></p>
                 </div>
-                <p class="font-semibold">Country: <span class="text-gray-700">{{ user.location }}</span></p>
+                <div class="flex space-x-4 bg-secondary-100 w-1/2 mx-auto justify-center text-secondary-300 px-2 py-3">
+                    <p class="font-semibold">Country: <span class="text-primary-100 rounded-md px-2 py-1 bg-secondary-300">{{ user.location }}</span></p>
+                </div>
             </div>
-            <a :href="user.html_url" target="_blank" class="text-blue-500 mt-4 inline-block">View Profile</a>
+            <a :href="user.html_url" target="_blank" class="text-secondary-300 bg-primary-200 rounded-md shadow-md-primary-300 p-2 mt-4 inline-block">View Profile</a>
         </div>
         <div class="container mx-auto my-4">
             <h3 class="text-2xl font-semibold text-center">Latest Repositories</h3>

@@ -8,6 +8,8 @@
 
 ## Project Briefing
 
+![Github Finder](./src/assets/github_white.png)
+
 Inspired by the Github Finder app written by Brad Traversy in React. This is the Vue version of the app with pretty much the same features as the one created by Brad here [Github Finder by Brad Traversy](https://github.com/bradtraversy/github-finder). This uses Headless UI library in Vue 3 for UI components. It uses Tailwind CSS framework with custom theme colors.
 
 Contrary to some of my other Vue 3 projects, this project uses the old school options API. 

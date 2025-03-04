@@ -1,9 +1,10 @@
 <template>
-  <Disclosure as="nav" class="bg-primary-200 dark:bg-slate-700 dark:text-white" v-slot="{ open }">
+  <Disclosure as="nav" class="bg-primary-200 dark:bg-slate-700 dark:text-white border-b-4 border-b-orange-500 lg:py-2" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center h-16">
         <div class="flex items-center w-full justify-between">
           <div class="justify-between flex items-center">
+            <img src="../assets/github_white.png" alt="Github Logo" class="h-16 w-32 mr-6 my-2" />
             <h2 class="text-2xl text-white font-bold">Github Finder</h2>
             <button @click="toggleDarkMode" class="ml-4 p-2 rounded-md bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
               {{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}
@@ -44,7 +45,6 @@
 
     <DisclosurePanel class="sm:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
-        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
         <router-link
           to="/"
           class="text-white block px-3 py-2 rounded-md text-base font-medium"
