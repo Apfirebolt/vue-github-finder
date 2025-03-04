@@ -1,10 +1,13 @@
 <template>
-  <Disclosure as="nav" class="bg-primary-200" v-slot="{ open }">
+  <Disclosure as="nav" class="bg-primary-200 dark:bg-slate-700 dark:text-white" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center h-16">
         <div class="flex items-center w-full justify-between">
-          <div class="flex-shrink-0">
+          <div class="justify-between flex items-center">
             <h2 class="text-2xl text-white font-bold">Github Finder</h2>
+            <button @click="toggleDarkMode" class="ml-4 p-2 rounded-md bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+              {{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}
+            </button>
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
@@ -59,6 +62,37 @@
 </template>
 
 <script setup>
+import { ref, watch, onMounted } from 'vue';
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { MenuIcon, XIcon } from "@heroicons/vue/outline";
+
+const isDarkMode = ref(false);
+
+const setDarkMode = (value) => {
+  isDarkMode.value = value;
+  if (value) {
+    console.log('dark mode');
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+  localStorage.setItem('darkMode', value);
+};
+
+const toggleDarkMode = () => {
+  setDarkMode(!isDarkMode.value);
+};
+
+watch(isDarkMode, (newValue) => {
+  setDarkMode(newValue);
+});
+
+onMounted(() => {
+  const savedDarkMode = localStorage.getItem('darkMode');
+  if (savedDarkMode !== null) {
+    setDarkMode(savedDarkMode === 'true');
+  } else {
+    setDarkMode(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+});
 </script>

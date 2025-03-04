@@ -30,11 +30,11 @@
       </div>
       <loader-component v-if="loading" />
       <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <div v-for="user in users" :key="user.id" class="bg-white shadow-md rounded-lg p-4">
+        <div v-for="user in users" :key="user.id" class="bg-white dark:bg-primary-300 dark:text-secondary-300 shadow-md rounded-lg p-4">
           <img :src="user.avatar_url" alt="User Avatar" class="w-16 h-16 rounded-full mx-auto">
           <h3 class="text-xl text-center mt-4">{{ user.login }}</h3>
-          <a :href="user.html_url" target="_blank" class="text-secondary-200 text-center block mt-2">View Profile</a>
-          <button @click="goToDetails(user.login)" class="mt-4 bg-primary-100 hover:bg-primary-300 transition-all duration-200 text-white py-2 px-4 rounded block mx-auto">
+          <a :href="user.html_url" target="_blank" class="text-secondary-200 dark:text-white dark:bg-primary-200 dark:w-1/2 dark:mx-auto dark:shadow-md dark:rounded-md dark:p-2 text-center block mt-2">View Profile</a>
+          <button @click="goToDetails(user.login)" class="mt-4 bg-primary-100 hover:bg-primary-300 dark:text-white transition-all duration-200 text-white py-2 px-4 rounded block mx-auto">
             Go to Details
           </button>
         </div>
