@@ -24,10 +24,12 @@
         </div>
         <div class="container mx-auto my-4">
             <h3 class="text-2xl font-semibold text-center">Latest Repositories</h3>
-            <div v-for="repo in repos" :key="repo.id" class="bg-white shadow-md rounded-lg p-4 mt-4">
-                <h3 class="text-xl font-semibold">{{ repo.name }}</h3>
-                <p class="text-gray-600">{{ repo.description }}</p>
-                <a :href="repo.html_url" target="_blank" class="text-secondary-300 bg-primary-200 px-2 py-1 rounded-sm shadow-md mt-2 inline-block">View Repo</a>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-3">
+                <div v-for="repo in repos" :key="repo.id" class="bg-white shadow-md rounded-lg p-4">
+                    <h3 class="text-xl font-semibold">{{ repo.name }}</h3>
+                    <p class="text-gray-600">{{ repo.description }}</p>
+                    <a :href="repo.html_url" target="_blank" class="text-secondary-300 bg-primary-200 px-2 py-1 rounded-sm shadow-md mt-2 inline-block">View Repo</a>
+                </div>
             </div>
         </div>
     </div>

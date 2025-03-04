@@ -13,13 +13,13 @@
               <router-link
                 to="/"
                 href="#"
-                class="text-gray-300 hover:bg-primary-100 transition-all duration-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-300 hover:bg-primary-100 transition-all duration-200 hover:text-white px-3 py-2 rounded-md font-medium"
                 >Home</router-link
               >
               
               <router-link
                 to="/about"
-                class="text-gray-300 hover:bg-primary-100 transition-all duration-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-300 hover:bg-primary-100 transition-all duration-200 hover:text-white px-3 py-2 rounded-md font-medium"
                 >About</router-link
               >
             </div>
