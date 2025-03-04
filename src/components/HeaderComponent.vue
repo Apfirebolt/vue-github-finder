@@ -1,11 +1,11 @@
 <template>
-  <Disclosure as="nav" class="bg-primary-200 dark:bg-slate-700 dark:text-white border-b-4 border-b-orange-500 lg:py-2" v-slot="{ open }">
+  <Disclosure :class="['border-b-4 border-b-orange-500 lg:py-2 fixed top-0 w-full z-10 transition-all duration-300', isScrolledDown ? 'bg-primary-300 dark:bg-slate-800' : 'bg-primary-200 dark:bg-slate-700 dark:text-white']" as="nav" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center h-16">
         <div class="flex items-center w-full justify-between">
           <div class="justify-between flex items-center">
             <img src="../assets/github_white.png" alt="Github Logo" class="h-16 w-32 mr-6 my-2" />
-            <h2 class="text-2xl text-white font-bold">Github Finder</h2>
+            <h2 class="text-2xl text-white font-bold">Finder</h2>
             <button @click="toggleDarkMode" class="ml-4 p-2 rounded-md bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
               {{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}
             </button>
@@ -67,6 +67,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { MenuIcon, XIcon } from "@heroicons/vue/outline";
 
 const isDarkMode = ref(false);
+const isScrolledDown = ref(false);
 
 const setDarkMode = (value) => {
   isDarkMode.value = value;
@@ -78,6 +79,22 @@ const setDarkMode = (value) => {
   }
   localStorage.setItem('darkMode', value);
 };
+
+const checkScroll = () => {
+  if (window.scrollY > 100) {
+    isScrolledDown.value = true;
+    console.log('scrolled down');
+  } else {
+    isScrolledDown.value = false;
+    console.log('scrolled up');
+  }
+};
+
+window.addEventListener('scroll', checkScroll);
+
+onMounted(() => {
+  checkScroll();
+});
 
 const toggleDarkMode = () => {
   setDarkMode(!isDarkMode.value);
@@ -94,5 +111,6 @@ onMounted(() => {
   } else {
     setDarkMode(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
   }
+  checkScroll();
 });
 </script>

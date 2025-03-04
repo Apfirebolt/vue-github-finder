@@ -1,7 +1,7 @@
 <template>
-  <section class="shadow sm:rounded-lg" id="about">
+  <section class="shadow sm:rounded-lg mt-10" id="about">
     <div class="px-4 py-5 sm:p-6" data-aos="fade-up">
-      <p class="text-center">
+      <p class="text-center mt-10">
         Type the username of a GitHub user in the search box below to view their
         profile details. It would show details such as the number of public
         repositories, followers, following, and more.
