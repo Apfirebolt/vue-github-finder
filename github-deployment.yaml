@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: github-deployment  # Name for your deployment
+spec:
+  replicas: 2  # Number of pods (2 in this case)
+  selector:
+    matchLabels:
+      app: github-deploy  # Label to identify pods belonging to this deployment
+  template:
+    metadata:
+      labels:
+        app: github-deploy  # Labels for the pods in the deployment
+    spec:
+      containers:
+      - name: new-github-finder  # Container name
+        image: aspper/github-finder:latest  # Your image reference
+        # Add any container specific configurations here (e.g., ports, resources)
+        ports:
+        - containerPort: 80  # Port your application listens on
+

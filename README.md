@@ -71,6 +71,56 @@ sudo docker run --detach -p 80:80 vue-github
 - Make sure there are no servers running on your system like nginx and/or Apache. Docker script is configured to serve the build through Nginx on port 80.
 - detach flag is used to indicate that this process would be running in background in non-interactive mode.
 
+## Kubernetes Deployment
+
+Create an image locally with your docker-hub username followed by the name of the image. Here's the example :-
+
+```
+docker tag github-finder aspper/github-finder
+docker push aspper/github-finder
+```
+First command would change the tag of the image "github-finder" which was already existing in my case to "aspper/github-finder"
+
+The second line would push the image on Docker hub which would be publicly accessible by anyone. Use the following Deployment file to spawn 2 pods using this image
+
+``` YAML
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: github-deployment  # Name for your deployment
+spec:
+  replicas: 2  # Number of pods (2 in this case)
+  selector:
+    matchLabels:
+      app: github-deploy  # Label to identify pods belonging to this deployment
+  template:
+    metadata:
+      labels:
+        app: github-deploy  # Labels for the pods in the deployment
+    spec:
+      containers:
+      - name: new-github-finder  # Container name
+        image: aspper/github-finder:latest  # Your image reference
+        # Add any container specific configurations here (e.g., ports, resources)
+        ports:
+        - containerPort: 80  # Port your application listens on
+
+```
+
+Deploy the pods inside a deployment using the command
+
+```
+kubectl apply -f github-deployment.yaml
+```
+
+Access using port forwarding using the command
+
+```
+kubectl port-forward github-deployment-57b4587c56-46b9v 8080:80
+```
+
+Now open port 8080 on your browser, you should be able to see the application in action. This is a widely adopted approach for testing kubernetes deployment before shipping to production.
+
 ## Contribute
 
 We welcome contributions to enhance the functionality and features of this project. To contribute, please follow these steps:
