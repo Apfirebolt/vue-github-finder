@@ -14,6 +14,8 @@ Inspired by the Github Finder app written by Brad Traversy in React. This is the
 
 Contrary to some of my other Vue 3 projects, this project uses the old school options API. 
 
+It is available for demonstration at https://vue-github-finder-sigma.vercel.app
+
 Made with ❤️ by **[@apfirebolt](https://github.com/Apfirebolt/)**
 
 ## Features
