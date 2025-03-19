@@ -1,6 +1,13 @@
 <template>
-  <div class="flex justify-center items-center h-full px-4 py-6">
-    <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-64 w-64"></div>
+  <div class="flex justify-center items-center my-5 h-full px-4 py-6">
+    <div class="cube">
+      <div class="side front"></div>
+      <div class="side back"></div>
+      <div class="side left"></div>
+      <div class="side right"></div>
+      <div class="side top"></div>
+      <div class="side bottom"></div>
+    </div>
   </div>
 </template>
 
@@ -13,27 +20,35 @@ export default defineComponent({
 </script>
 
 <style>
-.loader {
-  border-top-color: #5B85AA;
-  -webkit-animation: spinner 1.5s linear infinite;
-  animation: spinner 1.5s linear infinite;
+.cube {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  animation: rotateCube 2s infinite linear;
 }
 
-@-webkit-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
+.side {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #4C191B;
+  border: 2px solid #fff;
 }
 
-@keyframes spinner {
+.front  { transform: translateZ(50px); }
+.back   { transform: rotateY(180deg) translateZ(50px); }
+.left   { transform: rotateY(-90deg) translateZ(50px); }
+.right  { transform: rotateY(90deg) translateZ(50px); }
+.top    { transform: rotateX(90deg) translateZ(50px); }
+.bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+@keyframes rotateCube {
   0% {
-    transform: rotate(0deg);
+    transform: rotateX(0deg) rotateY(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotateX(360deg) rotateY(360deg);
   }
 }
 </style>

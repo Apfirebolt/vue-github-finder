@@ -5,6 +5,7 @@
 ![HeadlessUI](https://img.shields.io/badge/HeadlessUI-1.0-purple)
 ![Docker](https://img.shields.io/badge/Docker-19.03-blue)
 ![Nginx](https://img.shields.io/badge/Nginx-1.18-green)
+![VueMotion](https://img.shields.io/badge/VueMotion-1.0-orange)
 
 ## Project Briefing
 

@@ -72,7 +72,6 @@ const isScrolledDown = ref(false);
 const setDarkMode = (value) => {
   isDarkMode.value = value;
   if (value) {
-    console.log('dark mode');
     document.documentElement.classList.add('dark');
   } else {
     document.documentElement.classList.remove('dark');
@@ -83,10 +82,8 @@ const setDarkMode = (value) => {
 const checkScroll = () => {
   if (window.scrollY > 100) {
     isScrolledDown.value = true;
-    console.log('scrolled down');
   } else {
     isScrolledDown.value = false;
-    console.log('scrolled up');
   }
 };
 
