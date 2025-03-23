@@ -1,14 +1,14 @@
 <template>
     <loader-component v-if="loading" color="blue" />
-    <div class="user-container" v-else>
-        <div class="user-info bg-white shadow-md rounded-lg p-6 text-center">
+    <div class="user-container mt-16" v-else>
+        <div class="user-info bg-white dark:bg-primary-200 dark:text-white shadow-md rounded-lg p-6 text-center">
             <img :src="user.avatar_url" alt="User Avatar" class="w-48 h-48 rounded-full mx-auto">
             <h3 class="text-2xl font-semibold mt-4">{{ user.name }}</h3>
             <p v-if="user.email">
                 Email Address: <span class="text-blue-500">{{ user.email }}</span>
             </p>
-            <p class="text-gray-600">{{ user.login }}</p>
-            <p class="text-gray-600 mt-2">{{ user.bio }}</p>
+            <p class="text-gray-600 dark:text-secondary-300">{{ user.login }}</p>
+            <p class="text-gray-600 mt-2 dark:text-secondary-300">{{ user.bio }}</p>
             <div class="flex flex-col items-center mt-4 space-y-2 shadow-md rounded-lg p-4">
                 <div class="flex space-x-4 bg-secondary-100 w-1/2 mx-auto justify-center text-secondary-300 px-2 py-3">
                     <p class="font-semibold">Followers: <span class="text-primary-100 rounded-md px-2 py-1 bg-secondary-300">{{ user.followers }}</span></p>
@@ -27,9 +27,9 @@
         <div class="container mx-auto my-4">
             <h3 class="text-2xl font-semibold text-center">Latest Repositories</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-3">
-                <div v-for="repo in repos" :key="repo.id" class="bg-white shadow-md rounded-lg p-4">
+                <div v-for="repo in repos" :key="repo.id" class="bg-white dark:bg-primary-300 dark:text-white shadow-md rounded-lg p-4">
                     <h3 class="text-xl font-semibold">{{ repo.name }}</h3>
-                    <p class="text-gray-600">{{ repo.description }}</p>
+                    <p class="text-gray-600 dark:text-white">{{ repo.description }}</p>
                     <a :href="repo.html_url" target="_blank" class="text-secondary-300 bg-primary-200 px-2 py-1 rounded-sm shadow-md mt-2 inline-block">View Repo</a>
                 </div>
             </div>
