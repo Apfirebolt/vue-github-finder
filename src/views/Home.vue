@@ -1,65 +1,87 @@
 <template>
-  <section class="shadow sm:rounded-lg mt-10" id="about">
-    <div class="px-4 py-5 sm:p-6" data-aos="fade-up">
-      <p class="text-center mt-10">
-        Type the username of a GitHub user in the search box below to view their
-        profile details. It would show details such as the number of public
-        repositories, followers, following, and more.
-      </p>
+  <section class="container mt-12 mx-auto px-4 py-8 max-w-7xl">
+    <div class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8" data-aos="fade-up">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+          GitHub User Finder
+        </h1>
+        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Type the username of a GitHub user in the search box below to view their
+          profile details. It would show details such as the number of public
+          repositories, followers, following, and more.
+        </p>
+      </div>
 
-      <div class="mt-6 flex justify-center mx-auto w-1/2 items-center">
+      <div class="flex flex-col sm:flex-row gap-3 max-w-3xl mx-auto mb-8">
         <input
           type="text"
           v-model="searchTerm"
-          @keyup.enter="searchUser(searchTerm)"
+          @keyup.enter="searchUser(searchTerm, currentPage, itemsPerPage)"
           placeholder="Search for a GitHub user"
-          class="w-full mx-2 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="flex-1 px-5 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
         />
         <button
-          @click="searchUser(searchTerm)"
-          class="bg-primary-300 text-white py-2 px-4 rounded-lg shadow-md hover:bg-primary-100"
+          @click="searchUser(searchTerm, currentPage, itemsPerPage)"
+          class="bg-gradient-to-r from-primary-100 to-primary-200 hover:from-primary-200 hover:to-secondary-200 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
         >
           Search
         </button>
         <select
           v-model="itemsPerPage"
-          class="ml-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="px-5 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
         >
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
+          <option value="5">5 per page</option>
+          <option value="10">10 per page</option>
+          <option value="25">25 per page</option>
+          <option value="50">50 per page</option>
+          <option value="100">100 per page</option>
         </select>
       </div>
+
       <loader-component v-if="loading" />
-      <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+      <div v-if="!loading && users.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <div
           v-for="user in users"
           :key="user.id"
-          class="bg-white dark:bg-primary-300 dark:text-secondary-300 shadow-md rounded-lg p-4"
+          class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-700 dark:to-gray-800 shadow-lg hover:shadow-2xl rounded-2xl p-6 transform hover:-translate-y-2 transition-all duration-300"
         >
-          <img
-            :src="user.avatar_url"
-            alt="User Avatar"
-            class="w-16 h-16 rounded-full mx-auto"
-          />
-          <h3 class="text-xl text-center mt-4">{{ user.login }}</h3>
-          <a
-            :href="user.html_url"
-            target="_blank"
-            class="text-secondary-200 dark:text-white dark:bg-primary-200 dark:w-1/2 dark:mx-auto dark:shadow-md dark:rounded-md dark:p-2 text-center block mt-2"
-            >View Profile</a
-          >
-          <button
-            @click="goToDetails(user.login)"
-            class="mt-4 bg-primary-100 hover:bg-primary-300 dark:text-white transition-all duration-200 text-white py-2 px-4 rounded block mx-auto"
-          >
-            Go to Details
-          </button>
+          <div class="flex flex-col items-center">
+            <img
+              :src="user.avatar_url"
+              alt="User Avatar"
+              class="w-24 h-24 rounded-full border-4 border-blue-500 shadow-lg"
+            />
+            <h3 class="text-xl font-bold text-gray-800 dark:text-white mt-4 text-center">
+              {{ user.login }}
+            </h3>
+            <a
+              :href="user.html_url"
+              target="_blank"
+              class="text-primary-100 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium mt-2 inline-flex items-center gap-1 transition-colors"
+            >
+              View Profile
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+            <button
+              @click="goToDetails(user.login)"
+              class="mt-4 w-full bg-gradient-to-r from-primary-100 to-primary-200 hover:from-primary-200 hover:to-secondary-200 text-white font-semibold py-2.5 px-6 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+            >
+              View Details
+            </button>
+          </div>
         </div>
       </div>
+
+      <div v-if="!loading && users.length === 0" class="text-center py-12">
+        <p class="text-gray-500 dark:text-gray-400 text-lg">
+          No users found. Try a different search term.
+        </p>
+      </div>
     </div>
+
     <pagination
       v-if="users.length > 0"
       :currentPage="currentPage"
@@ -67,6 +89,7 @@
       :total="totalItems"
       @goToNextPage="goToNextPage"
       @goToPreviousPage="goToPreviousPage"
+      class="mt-8"
     />
   </section>
 </template>
