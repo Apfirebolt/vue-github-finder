@@ -1,12 +1,14 @@
 {
-  "name": "client",
+  "name": "github-finder",
+  "author": "Amit Prafulla",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
@@ -22,9 +24,12 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.14",
+    "jsdom": "^27.0.1",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "vitest": "^3.2.4"
   }
 }
